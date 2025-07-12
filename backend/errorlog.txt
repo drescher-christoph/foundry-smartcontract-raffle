@@ -1,0 +1,102 @@
+Compiling 1 files with Solc 0.8.19
+Solc 0.8.19 finished in 736.78ms
+Compiler run successful!
+
+Ran 1 test for test/unit/RaffleTest.t.sol:RaffleTest
+[FAIL: EvmError: Revert] setUp() (gas: 0)
+Logs:
+  Please update the subscription ID in your HelperConfig.s.sol
+  Link Token Address:  0x90193C961A926261B756D1E5bb255e67ff9498A1
+  Adding consumer to contract:  0xDB8cFf278adCCF9E9b5da745B44E754fC4EE3C76
+  VRF Coordinator:  0x34A1D3fff3958843C43aD80F30b94c510645C316
+
+Traces:
+  [86289403] RaffleTest::setUp()
+    ├─ [39872485] → new DeployRaffle@0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+    │   └─ ← [Return] 198687 bytes of code
+    ├─ [46220941] DeployRaffle::deployContract()
+    │   ├─ [8400857] → new HelperConfig@0x104fBc016F4bb334D775a19E8A6510109AC63E00
+    │   │   └─ ← [Return] 40946 bytes of code
+    │   ├─ [6746713] HelperConfig::getConfig()
+    │   │   ├─ [0] VM::startBroadcast()
+    │   │   │   └─ ← [Return] 
+    │   │   ├─ [5093039] → new VRFCoordinatorV2_5Mock@0x34A1D3fff3958843C43aD80F30b94c510645C316
+    │   │   │   ├─ emit ConfigSet()
+    │   │   │   └─ ← [Return] 25068 bytes of code
+    │   │   ├─ [1435121] → new LinkToken@0x90193C961A926261B756D1E5bb255e67ff9498A1
+    │   │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: DefaultSender: [0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38], amount: 1000000000000000000000000 [1e24])
+    │   │   │   └─ ← [Return] 6701 bytes of code
+    │   │   ├─ [0] VM::stopBroadcast()
+    │   │   │   └─ ← [Return] 
+    │   │   └─ ← [Return] NetworkConfig({ entranceFee: 10000000000000000 [1e16], interval: 30, vrfCoordinator: 0x34A1D3fff3958843C43aD80F30b94c510645C316, gasLane: 0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae, callbackGasLimit: 500000 [5e5], subscriptionId: 0, link: 0x90193C961A926261B756D1E5bb255e67ff9498A1 })
+    │   ├─ [8928448] → new CreateSubscription@0x037eDa3aDB1198021A9b2e88C22B464fD38db3f3
+    │   │   └─ ← [Return] 44469 bytes of code
+    │   ├─ [130910] CreateSubscription::createSubscription(VRFCoordinatorV2_5Mock: [0x34A1D3fff3958843C43aD80F30b94c510645C316])
+    │   │   ├─ [0] console::9710a9d0(00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000007a6900000000000000000000000000000000000000000000000000000000000000234372656174696e6720737562736372697074696f6e206f6e20636861696e2049443a200000000000000000000000000000000000000000000000000000000000) [staticcall]
+    │   │   │   └─ ← [Revert] revert: unknown selector `0x9710a9d0` for ConsoleCalls
+    │   │   ├─ [0] VM::startBroadcast()
+    │   │   │   └─ ← [Return] 
+    │   │   ├─ [123365] VRFCoordinatorV2_5Mock::createSubscription()
+    │   │   │   ├─ emit SubscriptionCreated(subId: 7570848181127581986339189052072122886913734678723205985508750752041200654908 [7.57e75], owner: DefaultSender: [0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38])
+    │   │   │   └─ ← [Return] 7570848181127581986339189052072122886913734678723205985508750752041200654908 [7.57e75]
+    │   │   ├─ [0] VM::stopBroadcast()
+    │   │   │   └─ ← [Return] 
+    │   │   ├─ [0] console::9710a9d0(000000000000000000000000000000000000000000000000000000000000004010bcf2be64c261e434a6014656bea8260621c8940cfe977cd11416455f3a1a3c0000000000000000000000000000000000000000000000000000000000000011537562736372697074696f6e2049443a20000000000000000000000000000000) [staticcall]
+    │   │   │   └─ ← [Revert] revert: unknown selector `0x9710a9d0` for ConsoleCalls
+    │   │   ├─ [0] console::log("Please update the subscription ID in your HelperConfig.s.sol") [staticcall]
+    │   │   │   └─ ← [Stop] 
+    │   │   └─ ← [Return] 7570848181127581986339189052072122886913734678723205985508750752041200654908 [7.57e75], VRFCoordinatorV2_5Mock: [0x34A1D3fff3958843C43aD80F30b94c510645C316]
+    │   ├─ [9522021] → new FundSubscription@0xDDc10602782af652bB913f7bdE1fD82981Db7dd9
+    │   │   └─ ← [Return] 47318 bytes of code
+    │   ├─ [51950] FundSubscription::fundSubscription(VRFCoordinatorV2_5Mock: [0x34A1D3fff3958843C43aD80F30b94c510645C316], 7570848181127581986339189052072122886913734678723205985508750752041200654908 [7.57e75], LinkToken: [0x90193C961A926261B756D1E5bb255e67ff9498A1])
+    │   │   ├─ [0] console::9710a9d0(00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000007a69000000000000000000000000000000000000000000000000000000000000002246756e64696e6720737562736372697074696f6e206f6e20636861696e2049443a20000000000000000000000000000000000000000000000000000000000000) [staticcall]
+    │   │   │   └─ ← [Revert] revert: unknown selector `0x9710a9d0` for ConsoleCalls
+    │   │   ├─ [0] console::9710a9d0(000000000000000000000000000000000000000000000000000000000000004010bcf2be64c261e434a6014656bea8260621c8940cfe977cd11416455f3a1a3c0000000000000000000000000000000000000000000000000000000000000011537562736372697074696f6e2049443a20000000000000000000000000000000) [staticcall]
+    │   │   │   └─ ← [Revert] revert: unknown selector `0x9710a9d0` for ConsoleCalls
+    │   │   ├─ [0] console::log("Link Token Address: ", LinkToken: [0x90193C961A926261B756D1E5bb255e67ff9498A1]) [staticcall]
+    │   │   │   └─ ← [Stop] 
+    │   │   ├─ [0] VM::startBroadcast()
+    │   │   │   └─ ← [Return] 
+    │   │   ├─ [46408] VRFCoordinatorV2_5Mock::fundSubscription(7570848181127581986339189052072122886913734678723205985508750752041200654908 [7.57e75], 30000000000000000000 [3e19])
+    │   │   │   ├─ emit SubscriptionFunded(subId: 7570848181127581986339189052072122886913734678723205985508750752041200654908 [7.57e75], oldBalance: 0, newBalance: 30000000000000000000 [3e19])
+    │   │   │   └─ ← [Stop] 
+    │   │   ├─ [0] VM::stopBroadcast()
+    │   │   │   └─ ← [Return] 
+    │   │   └─ ← [Stop] 
+    │   ├─ [0] VM::startBroadcast()
+    │   │   └─ ← [Return] 
+    │   ├─ [1564720] → new Raffle@0xDB8cFf278adCCF9E9b5da745B44E754fC4EE3C76
+    │   │   └─ ← [Return] 7464 bytes of code
+    │   ├─ [0] VM::stopBroadcast()
+    │   │   └─ ← [Return] 
+    │   ├─ [10593442] → new AddConsumer@0x7FdB3132Ff7D02d8B9e221c61cC895ce9a4bb773
+    │   │   └─ ← [Return] 52665 bytes of code
+    │   ├─ [73283] AddConsumer::addConsumer(Raffle: [0xDB8cFf278adCCF9E9b5da745B44E754fC4EE3C76], VRFCoordinatorV2_5Mock: [0x34A1D3fff3958843C43aD80F30b94c510645C316], 7570848181127581986339189052072122886913734678723205985508750752041200654908 [7.57e75])
+    │   │   ├─ [0] console::log("Adding consumer to contract: ", Raffle: [0xDB8cFf278adCCF9E9b5da745B44E754fC4EE3C76]) [staticcall]
+    │   │   │   └─ ← [Stop] 
+    │   │   ├─ [0] console::log("VRF Coordinator: ", VRFCoordinatorV2_5Mock: [0x34A1D3fff3958843C43aD80F30b94c510645C316]) [staticcall]
+    │   │   │   └─ ← [Stop] 
+    │   │   ├─ [0] console::9710a9d0(000000000000000000000000000000000000000000000000000000000000004010bcf2be64c261e434a6014656bea8260621c8940cfe977cd11416455f3a1a3c0000000000000000000000000000000000000000000000000000000000000011537562736372697074696f6e2049443a20000000000000000000000000000000) [staticcall]
+    │   │   │   └─ ← [Revert] revert: unknown selector `0x9710a9d0` for ConsoleCalls
+    │   │   ├─ [0] VM::startBroadcast()
+    │   │   │   └─ ← [Return] 
+    │   │   ├─ [68037] VRFCoordinatorV2_5Mock::addConsumer(7570848181127581986339189052072122886913734678723205985508750752041200654908 [7.57e75], Raffle: [0xDB8cFf278adCCF9E9b5da745B44E754fC4EE3C76])
+    │   │   │   ├─ emit SubscriptionConsumerAdded(subId: 7570848181127581986339189052072122886913734678723205985508750752041200654908 [7.57e75], consumer: Raffle: [0xDB8cFf278adCCF9E9b5da745B44E754fC4EE3C76])
+    │   │   │   └─ ← [Stop] 
+    │   │   ├─ [0] VM::stopBroadcast()
+    │   │   │   └─ ← [Return] 
+    │   │   └─ ← [Stop] 
+    │   └─ ← [Return] Raffle: [0xDB8cFf278adCCF9E9b5da745B44E754fC4EE3C76], HelperConfig: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    ├─ [3411] HelperConfig::getConfig()
+    │   └─ ← [Return] NetworkConfig({ entranceFee: 10000000000000000 [1e16], interval: 30, vrfCoordinator: 0x34A1D3fff3958843C43aD80F30b94c510645C316, gasLane: 0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae, callbackGasLimit: 500000 [5e5], subscriptionId: 0, link: 0x90193C961A926261B756D1E5bb255e67ff9498A1 })
+    └─ ← [Revert] EvmError: Revert
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 9.34ms (0.00ns CPU time)
+
+Ran 1 test suite in 883.03ms (9.34ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/unit/RaffleTest.t.sol:RaffleTest
+[FAIL: EvmError: Revert] setUp() (gas: 0)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
