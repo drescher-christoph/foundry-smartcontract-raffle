@@ -1,4 +1,10 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { RAFFLE_ADDRESS } from "../../constants";
+import { RAFFLE_ABI } from "../../constants";
+import { useReadContract, useWriteContract } from "wagmi";
+import { useBalance } from "wagmi";
+import { ethers } from "ethers";
+import { CountdownTimer } from "./CountdownTimer";
 import CoinIcon from "./CoinIcon";
 import bitcoin from "../assets/images/bitcoin.png";
 import ethereum from "../assets/images/ethereum.svg";
@@ -9,6 +15,51 @@ import apecoin from "../assets/images/ape.svg";
 import pepe from "../assets/images/pepe.svg";
 
 const Banner = () => {
+  const { writeContract } = useWriteContract();
+
+  const {
+    data: balance,
+    isLoading: loadingBalance,
+    isError: balanceError,
+  } = useBalance({
+    address: RAFFLE_ADDRESS,
+    watch: true,
+  });
+
+  const { data: entranceFee, isLoading: entranceFeeLoading } = useReadContract({
+    address: RAFFLE_ADDRESS,
+    abi: RAFFLE_ABI,
+    functionName: "getEntranceFee",
+  });
+
+  const { data: lastTimeStamp, isLoading: loadingTimeInterval } =
+    useReadContract({
+      address: RAFFLE_ADDRESS,
+      abi: RAFFLE_ABI,
+      functionName: "getInterval",
+    });
+
+  const { data: timeInterval, isLoading: loadingLastTimeStamp } =
+    useReadContract({
+      address: RAFFLE_ADDRESS,
+      abi: RAFFLE_ABI,
+      functionName: "getLastTimeStamp",
+    });
+
+  const enter = async () => {
+    console.log("Entering the lottery...");
+    try {
+      writeContract({
+        address: RAFFLE_ADDRESS,
+        abi: RAFFLE_ABI,
+        functionName: "enterRaffle",
+        value: entranceFee,
+      });
+    } catch (error) {
+      console.error("Error entering the lottery:", error);
+    }
+  };
+
   return (
     <div
       className="
@@ -128,16 +179,47 @@ const Banner = () => {
           PRIZE FUND
         </h1>
         <h1 className="text-primary font-inter font-semibold text-center text-7xl sm:text-5xl md:text-7xl xl:text-7xl 2xl:text-7xl z-5 pb-3.5">
-          <span className="text-white font-boldonse">12.500 </span>
-          <span className="text-logo font-boldonse">USDT</span>
+          <span className="text-white font-boldonse">
+            {loadingBalance
+              ? "Loading..."
+              : balanceError
+              ? "Error"
+              : balance
+              ? `${ethers.formatEther(String(balance.value))} `
+              : "N/A"}
+          </span>
+          <span className="text-logo font-boldonse">ETH</span>
         </h1>
-        <h2 className="text-secondary font-boldonse text-2xl ">
-          3 days : 12 hrs : 45 mins
-        </h2>
 
-        <button className="bg-tertiary rounded-full hover:border-2 sm:w-[40%] md:w-[40%] lg:w-[40%] xl:w-[40%] 2xl:w-[40%] w-[65%] text-white font-boldonse px-5 py-2 mt-7 top-20">
+        {loadingTimeInterval || loadingLastTimeStamp ? (
+          <p className="text-white font-boldonse text-lg mt-4">Loading...</p>
+        ) : typeof timeInterval === "bigint" &&
+          typeof lastTimeStamp === "bigint" ? (
+          <CountdownTimer
+            lastTimeStamp={Number(lastTimeStamp)}
+            interval={Number(timeInterval)}
+          />
+        ) : (
+          <p className="text-white font-boldonse text-lg mt-4">N/A</p>
+        )}
+
+        <button
+          className="bg-tertiary rounded-full hover:border-2 sm:w-[40%] md:w-[40%] lg:w-[40%] xl:w-[40%] 2xl:w-[40%] w-[65%] text-white font-boldonse px-5 py-2 mt-7 top-20"
+          onClick={enter}
+        >
           Enter the Lottery
         </button>
+
+        {entranceFeeLoading ? (
+          <p className="text-white font-boldonse text-lg mt-4">Loading...</p>
+        ) : entranceFee ? (
+          <p className="text-white font-boldonse text-lg mt-4">
+            Entrance Fee:{" "}
+            {entranceFee
+              ? `${ethers.formatEther(String(entranceFee))} ETH`
+              : "N/A"}
+          </p>
+        ) : null}
       </div>
     </div>
   );

@@ -86,7 +86,7 @@ contract HelperConfig is CodeConstants, Script {
         mainnetNetworkConfig = NetworkConfig({
             subscriptionId: 0, // If left as 0, our scripts will create one!
             gasLane: 0x9fe0eebf5e446e3c998ec9bb19951541aee00bb90ea201ae456421a2ded86805,
-            automationUpdateInterval: 30, // 30 seconds
+            automationUpdateInterval: 604800, // 7 days in seconds
             raffleEntranceFee: 0.01 ether,
             callbackGasLimit: 500000, // 500,000 gas
             vrfCoordinatorV2_5: 0x271682DEB8C4E0901D1a1550aD2e64D568E69909,
@@ -103,7 +103,7 @@ contract HelperConfig is CodeConstants, Script {
         sepoliaNetworkConfig = NetworkConfig({
             subscriptionId: 88327719654090601921142408330809092623891282954460433220602055828137472325064, // If left as 0, our scripts will create one!
             gasLane: 0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae,
-            automationUpdateInterval: 30, // 30 seconds
+            automationUpdateInterval: 86400, // 1 day in seconds
             raffleEntranceFee: 0.01 ether,
             callbackGasLimit: 500000, // 500,000 gas
             vrfCoordinatorV2_5: 0x9DdfaCa8183c41ad55329BdeeD9F6A8d53168B1B,

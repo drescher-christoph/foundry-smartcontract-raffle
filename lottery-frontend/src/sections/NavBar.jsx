@@ -1,5 +1,6 @@
 import { useState } from "react";
-import logo from "../assets/twitch.png";
+import logo from "../assets/logo.png";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,7 +13,7 @@ const NavBar = () => {
     <header>
       <nav className="flex justify-between items-center w-[92%] mx-auto py-3 z-20"> {/* pt-6 */}
         <div>
-          <img class="w-12 cursor-pointer m-2" src={logo} alt="..."></img>
+          <img class="w-22 h-auto object-fit cursor-pointer" src={logo} alt="..."></img>
         </div>
         {isMenuOpen && (
           <div className="fixed inset-0 bg-black/90 z-10 md:hidden">
@@ -54,36 +55,27 @@ const NavBar = () => {
         >
           <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 font-poppins">
             <li>
-              <a class="text-white hover:text-gray-500" href="#">
-                Products
+              <a class="text-white hover:text-gray-500" href="https://sepolia.etherscan.io/address/0x512318F0BC32378481CCc4F9294467b48e973A62">
+                Contract
               </a>
             </li>
             <li>
-              <a class="text-white hover:text-gray-500" href="#">
-                Solution
+              <a class="text-white hover:text-gray-500" href="https://github.com/drescher-christoph/foundry-smartcontract-raffle">
+                Github
               </a>
             </li>
             <li>
-              <a class="text-white hover:text-gray-500" href="#">
-                Resource
-              </a>
-            </li>
-            <li>
-              <a class="text-white hover:text-gray-500" href="#">
-                Developers
-              </a>
-            </li>
-            <li>
-              <a class="text-white hover:text-gray-500" href="#">
-                Pricing
+              <a class="text-white hover:text-gray-500" href="https://automation.chain.link">
+                Chainlink
               </a>
             </li>
           </ul>
         </div>
         <div className="flex items-center gap-6">
-          <button className="text-white px-5 py-2 rounded-full border-2 border-white hover:bg-[#9146ff] font-boldonse font-medium">
+          {/* <button className="text-white px-5 py-2 rounded-full border-2 border-white hover:bg-[#9146ff] font-boldonse font-medium">
             Connect Wallet
-          </button>
+          </button> */}
+          <ConnectButton />
           <div
             onClick={onToggleMenu}
             name="menu"

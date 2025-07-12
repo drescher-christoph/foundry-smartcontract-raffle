@@ -1,4 +1,4 @@
-export const RAFFLE_ADDRESS = "0x6988CeC9eBFCb27A6e469FE048d264ED4345228F";
+export const RAFFLE_ADDRESS = "0x512318F0BC32378481CCc4F9294467b48e973A62";
 export const RAFFLE_ABI = [
   {
     type: "constructor",
