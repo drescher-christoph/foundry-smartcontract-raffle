@@ -6,7 +6,7 @@ import { useBalance } from "wagmi";
 import { ethers } from "ethers";
 import { CountdownTimer } from "./CountdownTimer";
 import CoinIcon from "./CoinIcon";
-import bitcoin from "../assets/images/bitcoin.png";
+import bitcoin from "../assets/images/Bitcoin.png";
 import ethereum from "../assets/images/ethereum.svg";
 import usdt from "../assets/images/tether.svg";
 import dai from "../assets/images/dai.svg";
