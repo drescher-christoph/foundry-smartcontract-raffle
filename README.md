@@ -1,3 +1,5 @@
+## Live Demo: https://foundry-smartcontract-raffle.vercel.app/
+
 # 🎲 Chainlink Lottery DApp
 
 A decentralized, automated lottery system built with Solidity and Chainlink tools like VRF and Automation. Players can enter the raffle by sending ETH, and a random winner is selected automatically using Chainlink VRF v2.
